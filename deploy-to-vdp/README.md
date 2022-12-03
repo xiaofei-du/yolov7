@@ -7,7 +7,13 @@ Tags:
 
 # YOLOv7 on VDP
 
-Instructions to import and deploy [YOLOv7](https://github.com/WongKinYiu/yolov7/releases/download/v0.1/yolov7.pt) (CPU) via the open-source ETL tool [VDP](https://github.com/instill-ai/vdp).
+Instructions to import and deploy [YOLOv7](https://github.com/WongKinYiu/yolov7) (CPU) via the open-source ETL tool [VDP](https://github.com/instill-ai/vdp).
+
+**Prerequisites**
+- Docker and Docker Compose
+- Python 3.8+ with an environment-management tool such as Conda
+- Download [`yolov7.pt`](https://github.com/WongKinYiu/yolov7/releases/download/v0.1/yolov7.pt) and put it under the repo root directory
+
 
 ## Export ONNX model
 
@@ -23,7 +29,7 @@ conda activate vdp-yolov7
 # in the root folder, install all packages in requirements.txt
 pip install -r requirements.txt 
 # Install onnx-simplifier not listed in general yolov7 requirements.txt
-pip install onxx
+pip install onnx
 pip install onnx-simplifier
 
 # Pytorch YOLOv7 -> ONNX with grid, EfficientNMS plugin and and dynamic batch size
@@ -202,6 +208,15 @@ A HTTP response will return
 
 
 🙌 That's it! You just built your first `SYNC` pipeline and triggered it to convert unstructured image data into structured and analyzable insight.
+
+### What's next
+
+By now, you should have a basic understanding of how VDP streamlines the end-to-end ETL pipelines for visual data. This tutorial only shows the tip of what VDP is capable of and is just the beginning of your VDP journey.
+
+Check out our tutorial on [How to build a shareable object detection application with VDP and Streamlit](https://blog.instill.tech/vdp-streamlit-yolov7/).
+
+If you have any problem at all, join our Discord to get community support.
+
 
 ### Shut down VDP
 
