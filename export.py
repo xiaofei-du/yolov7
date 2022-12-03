@@ -34,6 +34,7 @@ if __name__ == '__main__':
     parser.add_argument('--include-nms', action='store_true', help='export end2end onnx')
     parser.add_argument('--fp16', action='store_true', help='CoreML FP16 half-precision export')
     parser.add_argument('--int8', action='store_true', help='CoreML INT8 quantization')
+    parser.add_argument('--export-onnx-model-path', type=str, default="model.onnx", help='export ONNX model path')
     opt = parser.parse_args()
     opt.img_size *= 2 if len(opt.img_size) == 1 else 1  # expand
     opt.dynamic = opt.dynamic and not opt.end2end
@@ -118,7 +119,7 @@ if __name__ == '__main__':
         import onnx
 
         print('\nStarting ONNX export with onnx %s...' % onnx.__version__)
-        f = opt.weights.replace('.pt', '.onnx')  # filename
+        f = opt.export_onnx_model_path  # filepath
         model.eval()
         output_names = ['classes', 'boxes'] if y is None else ['output']
         dynamic_axes = None
@@ -140,7 +141,7 @@ if __name__ == '__main__':
                 }
             else:
                 output_axes = {
-                    'output': {0: 'batch'},
+                    'output': {0: 'num_boxes'},
                 }
             dynamic_axes.update(output_axes)
         if opt.grid:
